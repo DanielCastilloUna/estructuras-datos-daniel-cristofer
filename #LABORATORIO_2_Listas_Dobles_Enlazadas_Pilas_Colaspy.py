@@ -189,9 +189,21 @@ class ListaDoblementeEnlazada:
             actual = actual.siguiente
         print("None")
 
+# --- IMPLEMENTACIÓN PILA Y COLA ---
+class Pila:
+    def __init__(self): self.lista = ListaDoblementeEnlazada()
+    def push(self, valor): self.lista.agregar_inicio(valor)
+    def pop(self): return self.lista.eliminar_inicio()
+
+class Cola:
+    def __init__(self): self.lista = ListaDoblementeEnlazada()
+    def enqueue(self, valor): self.lista.insertar_final(valor)
+    def dequeue(self): return self.lista.eliminar_inicio()
 
 if __name__ == "__main__":
     lista = ListaDoblementeEnlazada()
+    pila = Pila()
+    cola = Cola()
 
     while (True):
         os.system('cls' if os.name == 'nt' else 'clear')  # Limpiar la pantalla
@@ -208,7 +220,11 @@ if __name__ == "__main__":
         print("9. Eliminar al inicio de la lista")
         print("10. Eliminar al medio de la lista")
         print("11. Mostrar lista")
-        print("12. Salir")
+        print("12. Pila Push")
+        print("13. Pila Pop")
+        print("14. Cola Enqueue")
+        print("15. Cola Dequeue")
+        print("16. Salir")
 
 
         opcion = input("Elige una opcion: ")
@@ -247,6 +263,14 @@ if __name__ == "__main__":
         elif (opcion=="11"):
             lista.mostrarLista()
         elif (opcion=="12"):
+            pila.push(input("Dato Push Pila: "))
+        elif (opcion=="13"):
+            print(f"Pop Pila: {pila.pop()}")
+        elif (opcion=="14"):
+            cola.enqueue(input("Dato Enqueue Cola: "))
+        elif (opcion=="15"):
+            print(f"Dequeue Cola: {cola.dequeue()}")
+        elif (opcion=="16"):
             print("Saliendo del programa...")
             break
         
