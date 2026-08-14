@@ -1,0 +1,10 @@
+====================================
+    REPORTE DE TEMPERATURAS
+====================================
+
+Cantidad de temperaturas: 99
+Temperatura mayor: 34
+Temperatura menor: 18
+Temperatura promedio: 26.16
+
+Integrantes: Daniel Castillo Jimenez - Cristofer Jarquin
