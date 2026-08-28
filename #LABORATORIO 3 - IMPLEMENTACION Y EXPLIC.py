@@ -77,7 +77,7 @@ def medir(lista):
 print("\n" + "=" * 70)
 print("Parte VIII - Medición de tiempos con distintos tamaños Quick Sort")
 print("=" * 70)
-print(f"{'Tamannio de la lista':<10}{'Aleatorio (s)':<18}{'Ordenada (s)':<18}{'Invertida (s)':<18}")
+print(f"{'Tamannio':<10}{'Aleatorio':<18}{'Ordenada':<18}{'Invertida':<18}")
 
 for n in [100,500,1000,5000]:
     aleatoria = [random.randint(1, 1000000) for _ in range(n)] # Generamos una lista aleatoria de tamaño n
