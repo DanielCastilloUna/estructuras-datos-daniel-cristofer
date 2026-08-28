@@ -1,6 +1,6 @@
 #LABORATORIO 3 - IMPLEMENTACION Y EXPLICACION DE ALGORITMO DE ORDENAMIENTO QUICKSORT
 #Ejercicio asignado: Quick Sort
-#Estudiantes: Daniel Castillo Jimenez - Cristofer Jarquin
+#Estudiantes: Daniel Castillo Jimenez - Cristofer Jarquin Gutierrez
 
 import random # Importamos la libreria random para generar numeros aleatorios
 import time # Importamos la libreria time para medir el tiempo de ejecucion del algoritmo
@@ -29,12 +29,12 @@ def quicksort_ultimo(lista, nivel =0, mostrar = False):
         return (quicksort_ultimo(menores, nivel + 1, mostrar) + [pivote] + quicksort_ultimo(mayores, nivel + 1, mostrar))
 
 
-def quicksort_primero(lista): # Quick Sort - pivote = primer elemento        
+def quicksort_primero(lista): # Quick Sort - pivote = primer elemento         
     if len(lista) <= 1: # Caso base: si la lista tiene 0 o 1 elementos, ya está ordenada
         return lista
     pivote = lista[0] # Elegimos el primer elemento como pivote
     menores = [x for x in lista[1:] if x <= pivote] # Lista para elementos menores que el pivote
-    mayores = [x for x in lista[1:] if x > pivote] #
+    mayores = [x for x in lista[1:] if x > pivote] # 
     return quicksort_primero(menores) + [pivote] + quicksort_primero(mayores) # Retornamos la lista ordenada
 
 def quicksort_centro(lista): # Quick Sort - pivote = elemento del centro
@@ -79,7 +79,7 @@ print("Parte VIII - Medición de tiempos con distintos tamaños Quick Sort")
 print("=" * 70)
 print(f"{'Tamannio de la lista':<10}{'Aleatorio (s)':<18}{'Ordenada (s)':<18}{'Invertida (s)':<18}")
 
-for n in [100,500,1000,500]:
+for n in [100,500,1000,5000]:
     aleatoria = [random.randint(1, 1000000) for _ in range(n)] # Generamos una lista aleatoria de tamaño n
     ordenada = list(range(n))
     invertida = list(range(n, 0, -1)) # Generamos una lista invertida de tamaño n
@@ -88,17 +88,17 @@ for n in [100,500,1000,500]:
     t_invertida = medir(invertida) # Medimos el tiempo de ejecución para la lista invertida
     print(f"{n:<10}{t_aleatoria:<18.6f}{t_ordenada:<18.6f}{t_invertida:<18.6f}") # Imprimimos los resultados
 
-    #Parte IX - Diferentes condiciones de entrada (n = 1000)
+#Parte IX - Diferentes condiciones de entrada (n = 1000)
 
-    print("\n" + "=" * 70)
-    print("Parte IX - Diferentes condiciones de entrada (n = 1000)")
-    print("="*70)
-    caso_a = random.sample(range(1,10000),1000)
-    caso_b = list(range(1000))
-    caso_c = list(range(1000,0,-1))
+print("\n" + "=" * 70)
+print("Parte IX - Diferentes condiciones de entrada (n = 1000)")
+print("="*70)
+caso_a = random.sample(range(1,10000),1000)
+caso_b = list(range(1000))
+caso_c = list(range(1000,0,-1))
 
-    t_a = medir(caso_a)
-    t_b = medir(caso_b)
-    t_c = medir(caso_c)
-    print(f"{'Algoritmo':<15}{'Aleatoria':<15}{'Ordenada':<15}{'Invertida':<15}")
-    print(f"{'Quick Sort':<15}{t_a:15.6f}{t_b:15.6f}{t_c:15.6f}")
+t_a = medir(caso_a)
+t_b = medir(caso_b)
+t_c = medir(caso_c)
+print(f"{'Algoritmo':<15}{'Aleatoria':<15}{'Ordenada':<15}{'Invertida':<15}")
+print(f"{'Quick Sort':<15}{t_a:15.6f}{t_b:15.6f}{t_c:15.6f}")
