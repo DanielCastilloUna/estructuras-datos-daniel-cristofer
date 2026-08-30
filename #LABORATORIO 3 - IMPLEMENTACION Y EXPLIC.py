@@ -49,6 +49,14 @@ def quicksort_centro(lista): # Quick Sort - pivote = elemento del centro
 
 
 
+# lista_ordenada = list(range(500))
+# print("Intentando ordenar una lista ya ordenada de 1000 elementos")
+# print("Elegimos el pivote como ultimo elemento, y no le aumentamos a python el limite de recursion")
+# resultado = quicksort_ultimo(lista_ordenada,mostrar=True)
+# print("Esto no se va a imprimir", resultado[:10]) #No se imprime cuando alcanza el limite de llamadas
+
+
+
 
 
 print("\n" + "=" * 60)
@@ -65,6 +73,9 @@ print(quicksort_primero(lista_prueba.copy()))
 print("\nComparacion con pivote = elemento del centro:")
 print(quicksort_centro(lista_prueba.copy()))
 
+
+
+
 #Parte VIII - Medición de tiempo de ejecución
 
 def medir(lista):
@@ -79,7 +90,7 @@ print("Parte VIII - Medición de tiempos con distintos tamaños Quick Sort")
 print("=" * 70)
 print(f"{'Tamannio':<10}{'Aleatorio':<18}{'Ordenada':<18}{'Invertida':<18}")
 
-for n in [100,500,1000,5000]:
+for n in [100,500,1000,5000]: #Probamos tammanios de 100, 500, de 1000 y 5000
     aleatoria = [random.randint(1, 1000000) for _ in range(n)] # Generamos una lista aleatoria de tamaño n
     ordenada = list(range(n))
     invertida = list(range(n, 0, -1)) # Generamos una lista invertida de tamaño n
