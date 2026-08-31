@@ -160,7 +160,28 @@ class ListaDoblementeEnlazada:
                 print(f"Producto encolado -> {actual.nombre}")
             actual = actual.siguiente
         return cola_compras
+        
+        #5 lista de frecuencias con los paises
+        def frecuencia_paises(self):
+        if self.esta_vacia():
+            print("La lista esta vacia, no hay paises que registrar.")
+            return
+        
+        frecuencias = {}
+        actual = self.cabeza
+        while actual is not None:
+            pais = actual.pais.strip().capitalize()
+            frecuencias[pais] = frecuencias.get(pais, 0) + 1
+            actual = actual.siguiente
 
+        print("\n--- LISTA DE FRECUENCIAS DE PAISES (IMPORTACIONES) ---")
+        paises_ordenados = sorted(frecuencias.items(), key=lambda x: x[1], reverse=True)
+        for pais, freq in paises_ordenados:
+            print(f"Pais: {pais} -> {freq} producto(s) importado(s)")
+        
+        lugar_mayor = paises_ordenados[0][0]
+        print(f"\nEl pais desde donde se esta importando mas es: {lugar_mayor}")
+     
 
 
             
