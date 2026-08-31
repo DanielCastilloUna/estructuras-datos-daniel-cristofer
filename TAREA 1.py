@@ -92,24 +92,25 @@ class ListaDoblementeEnlazada:
             self.tamannio -= 1
             return valor_eliminado
 
-    def menu_super(lista_super): # Ingresar, eliminar y buscar juntos
+    def menu_super(lista_super):
         while(True):
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("\n --- MENU ---")
+            print("\n --- MENU SUPERMERCADO ---")
             print("0. Insertar producto")
             print("1. Buscar producto")
             print("2. Eliminar producto")   
-            print("3. Salir")
+            print("3. Ver lista completa (Recursivo)")
+            print("4. Ver frecuencia de paises")
+            print("5. Generar reporte de recuperacion (.txt)")
+            print("6. Salir")
 
             opcion = input("Elige una opcion: ")
             if (opcion == "0"):
-                #Pedimos los 5 atributos
                 id_prod = input("ID del producto: ")
                 nombre = input("Nombre del producto: ")
                 precio = float(input("Precio: "))
                 pais = input("País de origen: ")
                 existencias = int(input("Existencias: "))
-
                 lista_super.insertar(id_prod, nombre, precio, pais, existencias)
                 print("Producto insertado con exito.")
 
@@ -119,12 +120,22 @@ class ListaDoblementeEnlazada:
             
             elif (opcion == "2"):
                 nombre_eliminar = input("Producto a eliminar: ")
-                lista_super.eliminar(nombre_eliminar)   
-            elif (opcion=="3"):
+                lista_super.eliminar(nombre_eliminar)
+
+            elif (opcion == "3"):
+                lista_super.imprimir_lista_recursiva()
+
+            elif (opcion == "4"):
+                lista_super.frecuencia_paises()
+
+            elif (opcion == "5"):
+                lista_super.generar_reporte_recuperacion()
+
+            elif (opcion == "6"):
                 print("Saliendo del programa...")
                 break   
             input("\nPresiona Enter para continuar...")
-
+            
     def buscarElemento(self, nombre_referencia):
         if self.esta_vacia():
             print("La lista esta vacia, no hay nada para buscar")
@@ -218,6 +229,20 @@ class ListaDoblementeEnlazada:
 
         print(f"\nReporte generado exitosamente con el nombre: '{nombre_archivo}'")
         print(f"Monto total de recuperacion calculado: {total_inversion}")
+
+        # método recursivo que muestre la lista doblemente enlada
+        def mostrar_recursivo(self, nodo_actual):
+        if nodo_actual is None:
+            return
+        print(f"ID: {nodo_actual.id} | Nombre: {nodo_actual.nombre} | Precio: {nodo_actual.precio} | Pais: {nodo_actual.pais} | Existencias: {nodo_actual.existencias}")
+        self.mostrar_recursivo(nodo_actual.siguiente)
+
+    def imprimir_lista_recursiva(self):
+        if self.esta_vacia():
+            print("La lista esta vacia.")
+        else:
+            print("\n--- MOSTRANDO LISTA DOBLEMENTE ENLAZADA (RECURSIVO) ---")
+            self.mostrar_recursivo(self.cabeza)
      
 
 
