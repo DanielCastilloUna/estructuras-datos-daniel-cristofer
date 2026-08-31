@@ -181,6 +181,43 @@ class ListaDoblementeEnlazada:
         
         lugar_mayor = paises_ordenados[0][0]
         print(f"\nEl pais desde donde se esta importando mas es: {lugar_mayor}")
+
+        #Reporte .txt y cálculo de recuperación
+        def generar_reporte_recuperacion(self, nombre_archivo="reporte_recuperacion.txt"):
+        if self.esta_vacia():
+            print("La lista esta vacia, no hay productos para generar reporte.")
+            return
+
+        cola_agotados = self.encolar_productos_agotados()
+        if cola_agotados.esta_vacia():
+            print("\nNo hay productos con 0 existencias hoy. El reporte saldra vacio.")
+            
+        total_inversion = 0
+        lineas_reporte = []
+        lineas_reporte.append("==================================================")
+        lineas_reporte.append("   REPORTE DIARIO DE SUMINISTROS A RECUPERAR      ")
+        lineas_reporte.append("==================================================\n")
+
+        actual = cola_agotados.cabeza
+        while actual is not None:
+            cantidad_a_pedir = 10  # Lote estimado para reponer stock agotado
+            subtotal = cantidad_a_pedir * actual.precio
+            total_inversion += subtotal
+
+            lineas_reporte.append(f"ID: {actual.id} | Producto: {actual.nombre} | Pais: {actual.pais}")
+            lineas_reporte.append(f"  -> Precio Unitario: {actual.precio} | Cantidad a pedir: {cantidad_a_pedir}")
+            lineas_reporte.append(f"  -> Subtotal a invertir: {subtotal}\n")
+            actual = actual.siguiente
+
+        lineas_reporte.append("--------------------------------------------------")
+        lineas_reporte.append(f"MONTO TOTAL NECESARIO PARA RECUPERAR HOY: {total_inversion}")
+        lineas_reporte.append("==================================================")
+
+        with open(nombre_archivo, "w", encoding="utf-8") as f:
+            f.write("\n".join(lineas_reporte))
+
+        print(f"\nReporte generado exitosamente con el nombre: '{nombre_archivo}'")
+        print(f"Monto total de recuperacion calculado: {total_inversion}")
      
 
 
