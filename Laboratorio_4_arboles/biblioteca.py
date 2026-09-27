@@ -52,3 +52,26 @@ print('Raíz:', raiz.codigo)  # 410
 print('Hijos de 260:', raiz.izquierdo.izquierdo.codigo, 'y', raiz.izquierdo.derecho.codigo)
 print('Hijos de 580:', raiz.derecho.izquierdo.codigo, 'y', raiz.derecho.derecho.codigo)
 
+
+
+# ---------- Paso 2: consultar el catálogo ----------
+def buscar(nodo, codigo):
+    if nodo is None or nodo.codigo == codigo:
+        return nodo
+    if codigo < nodo.codigo:
+        return buscar(nodo.izquierdo, codigo)
+    return buscar(nodo.derecho, codigo)
+
+
+def listado_inorden(nodo):
+    if nodo is None:
+        return []
+    return (listado_inorden(nodo.izquierdo)
+            + [(nodo.codigo, nodo.titulo, nodo.disponibles)]
+            + listado_inorden(nodo.derecho))
+
+
+print('Libro 330:', buscar(raiz, 330).titulo)
+print('Código 999 registrado:', buscar(raiz, 999) is not None)
+for libro in listado_inorden(raiz):
+    print(libro)
