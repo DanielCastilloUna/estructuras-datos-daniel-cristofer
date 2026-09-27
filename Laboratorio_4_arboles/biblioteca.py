@@ -75,3 +75,20 @@ print('Libro 330:', buscar(raiz, 330).titulo)
 print('Código 999 registrado:', buscar(raiz, 999) is not None)
 for libro in listado_inorden(raiz):
     print(libro)
+
+
+
+# ---------- Paso 3: programar el préstamo ----------
+def prestar(raiz, codigo):
+    libro = buscar(raiz, codigo)
+    if libro is None or libro.disponibles == 0:
+        return False
+    libro.disponibles -= 1
+    return True
+
+
+print(prestar(raiz, 330))  # True: pasa de 2 a 1
+print(prestar(raiz, 330))  # True: pasa de 1 a 0
+print(prestar(raiz, 330))  # False: no hay ejemplares
+print(prestar(raiz, 999))  # False: código inexistente
+print(buscar(raiz, 330).disponibles)  # 0
